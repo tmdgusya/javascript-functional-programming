@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  const products = [
+    { name: "반팔", price: 10000 },
+    { name: "반바지", price: 10000 },
+    { name: "티쳐츠", price: 10000 },
+  ]
+  const map = (transform, iter) => {
+    let res = [];
+    for (const p of iter) {
+      res.push(transform(p))
+    }
+    return res;
+  }
+
+  let res = map(p => p.name, products)
+  console.log(res);
+</script>
+
+####
+
+<script>
+  function *gen() {
+    yield 2;
+    yield 3;
+    yield 4;
+  }
+
+  console.log(map(a => a * a, gen()));
+</script>
+</body>
+</html>
