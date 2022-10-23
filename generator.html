@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    /**
+     * generator 는 이터레이터를 생성하는 함수.
+     * @returns {Generator<number, number, *>}
+     */
+    function *gen() {
+      yield 1;
+      yield 2;
+      yield 3;
+      return 100;
+    }
+    let iter = gen(); // return well-formed iterator
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next()); // { 100, true }
+
+    for (const a of gen()) console.log(a)
+  </script>
+
+<script>
+    /**
+     * 평가할때 까지만 동작하므로, 프로그램이 멈출일은 없음.
+     * @param i
+     * @returns {Generator<number, void, *>}
+     */
+    function *infinity(i = 0) {
+        while (true) yield i++
+    }
+
+    function *limit(limit, iter) {
+        for (const a of iter) {
+            yield a;
+            if (a === limit) return;
+        }
+    }
+
+    function *odd(num) {
+      for (const a of limit(num, infinity(0))) {
+        if (a % 2) yield a;
+      }
+    }
+
+    let iter2 = odd(10)
+    // let iter2 = infinity()
+    console.log(iter2.next());
+    console.log(iter2.next());
+    console.log(iter2.next());
+    console.log(iter2.next());
+</script>
+</body>
+</html>
