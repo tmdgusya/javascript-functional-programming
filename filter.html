@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    const products = [
+      { name: "반팔", price: 10000 },
+      { name: "반바지", price: 10000 },
+      { name: "티쳐츠", price: 30000 },
+    ]
+  </script>
+
+<script>
+  let under20000 = [];
+  for (const p of products) {
+    if (p.price < 20000) under20000.push(p)
+  }
+  console.log(under20000)
+
+  const filter = (condition, iter) => {
+    let res = [];
+    for (const p of iter) {
+      if (condition(p)) res.push(p)
+    }
+    return res
+  }
+
+  var result = filter(p => p.price < 20000, products)
+  console.log(result)
+
+  var result2 = filter(p => p.price > 20000, products)
+  console.log(result2)
+</script>
+</body>
+</html>
